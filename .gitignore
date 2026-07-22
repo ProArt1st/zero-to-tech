@@ -17,3 +17,5 @@ dist/
 # misc
 *.log
 .env*
+
+backend/.venv
