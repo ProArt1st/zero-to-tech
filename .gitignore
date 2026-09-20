@@ -17,6 +17,7 @@ dist/
 # misc
 *.log
 .env*
+!.env.example
 
 backend/.venv
 __pycache__
