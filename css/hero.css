@@ -18,7 +18,8 @@
 }
 
 .brand-eyebrow {
-  color: rgba(29, 29, 31, 0.88);
+  color: var(--text-main);
+  opacity: 0.88;
   font-size: 21px;
   font-weight: 500;
   line-height: 1.14;

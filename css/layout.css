@@ -7,7 +7,7 @@ body {
 
 .app-shell {
   min-height: 100vh;
-  background: linear-gradient(180deg, #ffffff 0%, var(--page-bg) 28%, var(--page-bg) 100%);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--page-bg) 28%, var(--page-bg) 100%);
 }
 
 .page-shell {

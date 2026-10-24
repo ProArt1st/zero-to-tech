@@ -9,7 +9,7 @@
 }
 
 .nav-link {
-  color: rgba(29, 29, 31, 0.54);
+  color: var(--text-muted);
   font-size: 15px;
   line-height: 1.33;
   letter-spacing: -0.24px;
