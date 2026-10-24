@@ -11,7 +11,11 @@ from dotenv import load_dotenv
 
 load_dotenv()                        # ← 读同目录下的 .env
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS").split(",")
+raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000")
+ALLOWED_ORIGINS = [o.strip() for o in raw_origins.split(",") if o.strip()]
+
+# 生产环境（HTTPS）或显式配置时才启用 secure=True，本地开发 HTTP 下默认为 False 以免 Cookie 被浏览器丢弃
+SECURE_COOKIE = os.getenv("SECURE_COOKIE", "false").lower() in ("true", "1") or os.getenv("ENVIRONMENT") == "production"
 
 init_db()
 
@@ -32,7 +36,7 @@ def get_session_id(request: Request, response: Response) -> str:
         response.set_cookie(
             "session_id", sid,
             httponly=True, samesite="lax",
-            secure=True,                         # 只在 HTTPS 上运送
+            secure=SECURE_COOKIE,                # 生产环境 HTTPS 运送，本地开发关闭
             max_age=60 * 60 * 24 * 30,            # 记 30 天
         )
     return sid

@@ -1,6 +1,8 @@
 import sqlite3
+from pathlib import Path
 
-DB_FILE = "history.db"
+# 无论在哪个目录启动命令，数据库始终固定在 backend/history.db
+DB_FILE = Path(__file__).resolve().parent / "history.db"
 
 def get_conn():
     conn = sqlite3.connect(DB_FILE)
